@@ -1,0 +1,751 @@
+/* ==========================================================================
+   CLAYMORPHISM AUTHENTICATION UI
+   Soft 3D pillowy surfaces, dual outer shadows & tactile inner highlights
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background-color: var(--bg-page);
+  background: 
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.7) 0%, transparent 40%),
+    radial-gradient(circle at 88% 82%, rgba(199, 210, 254, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
+    var(--bg-page);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Clay Orbs (Ambient Background 3D Atmosphere)
+   ========================================================================== */
+.clay-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+/* Orb 1: Pastel Lavender */
+.clay-orb.orb-1 {
+  top: 7%;
+  right: 12%;
+  width: 120px;
+  height: 120px;
+  background: #c7d2fe;
+  box-shadow: 
+    14px 16px 32px rgba(165, 180, 252, 0.5),
+    -10px -10px 24px rgba(255, 255, 255, 0.85),
+    inset 6px 6px 14px rgba(255, 255, 255, 0.85),
+    inset -6px -6px 14px rgba(99, 102, 241, 0.3);
+  animation: floatOrb 7s ease-in-out infinite;
+}
+
+/* Orb 2: Warm Pastel Peach */
+.clay-orb.orb-2 {
+  bottom: 8%;
+  left: 10%;
+  width: 105px;
+  height: 105px;
+  background: #fed7aa;
+  box-shadow: 
+    12px 14px 28px rgba(253, 186, 116, 0.45),
+    -8px -8px 22px rgba(255, 255, 255, 0.85),
+    inset 5px 5px 12px rgba(255, 255, 255, 0.85),
+    inset -5px -5px 12px rgba(234, 88, 12, 0.25);
+  animation: floatOrbReverse 8.5s ease-in-out infinite;
+}
+
+/* Orb 3: Soft Sky Cyan */
+.clay-orb.orb-3 {
+  top: 16%;
+  left: 14%;
+  width: 68px;
+  height: 68px;
+  background: #bae6fd;
+  box-shadow: 
+    8px 10px 20px rgba(125, 211, 252, 0.4),
+    -6px -6px 16px rgba(255, 255, 255, 0.85),
+    inset 4px 4px 9px rgba(255, 255, 255, 0.9),
+    inset -4px -4px 9px rgba(2, 132, 199, 0.25);
+  animation: floatOrb 9s ease-in-out infinite 1s;
+}
+
+/* Orb 4: Soft Mint Pill Shape */
+.clay-orb.orb-4 {
+  bottom: 20%;
+  right: 13%;
+  width: 86px;
+  height: 48px;
+  border-radius: 24px;
+  background: #bbf7d0;
+  box-shadow: 
+    10px 12px 24px rgba(134, 239, 172, 0.4),
+    -6px -6px 16px rgba(255, 255, 255, 0.85),
+    inset 4px 4px 10px rgba(255, 255, 255, 0.85),
+    inset -4px -4px 10px rgba(22, 163, 74, 0.25);
+  animation: floatOrbReverse 6.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes floatOrbReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-3deg);
+  }
+}
+
+/* ==========================================================================
+   Card Container
+   ========================================================================== */
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Brand Header */
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  border: none;
+  box-shadow: 
+    8px 10px 22px rgba(79, 70, 229, 0.38),
+    -5px -5px 14px rgba(255, 255, 255, 0.85),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.25);
+  margin-bottom: 18px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.brand-icon-wrapper:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 
+    10px 14px 26px rgba(79, 70, 229, 0.45),
+    -6px -6px 16px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.7),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+}
+
+.auth-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Claymorphic Card
+   ========================================================================== */
+.auth-card {
+  background: var(--bg-clay);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 34px 28px;
+  box-shadow: 
+    16px 20px 42px var(--clay-shadow-dark),
+    -14px -14px 34px var(--clay-shadow-light),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
+    inset -3px -3px 6px rgba(160, 178, 204, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ==========================================================================
+   Social Authentication (Puffy Clay Pill Buttons)
+   ========================================================================== */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 46px;
+  background: var(--bg-clay);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: 
+    6px 6px 14px rgba(160, 178, 204, 0.35),
+    -6px -6px 14px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 4px rgba(160, 178, 204, 0.15);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-social:hover:not(:disabled) {
+  transform: translateY(-2px);
+  color: #0f172a;
+  box-shadow: 
+    8px 10px 18px rgba(160, 178, 204, 0.42),
+    -6px -6px 14px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(160, 178, 204, 0.2);
+}
+
+.btn-social:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 
+    inset 3px 3px 7px rgba(160, 178, 204, 0.45),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.85);
+}
+
+.social-icon {
+  width: 19px;
+  height: 19px;
+}
+
+/* ==========================================================================
+   Clay Inset Divider
+   ========================================================================== */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--text-subtle);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--bg-clay-inset);
+  box-shadow: 
+    inset 1px 1px 2px rgba(160, 178, 204, 0.35),
+    0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.divider span {
+  padding: 0 14px;
+}
+
+/* ==========================================================================
+   Form Groups & Labels
+   ========================================================================== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  display: block;
+}
+
+.forgot-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--clay-primary);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.forgot-link:hover {
+  color: var(--clay-primary-hover);
+  text-decoration: underline;
+  transform: translateY(-0.5px);
+}
+
+/* ==========================================================================
+   Clay Debossed Inputs (Smoothly pressed into clay tablet)
+   ========================================================================== */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  background-color: var(--bg-clay-inset);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: 
+    inset 4px 4px 8px rgba(160, 178, 204, 0.45),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.95);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: var(--text-subtle);
+  font-weight: 400;
+}
+
+.form-input:hover {
+  background-color: #dee8f4;
+}
+
+.form-input:focus {
+  background-color: #dee8f4;
+  box-shadow: 
+    inset 4px 4px 8px rgba(99, 102, 241, 0.2),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.95),
+    0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.form-input.has-error {
+  background-color: #fee2e2;
+  box-shadow: 
+    inset 4px 4px 8px rgba(239, 68, 68, 0.25),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.95),
+    0 0 0 3px rgba(239, 68, 68, 0.25);
+}
+
+.input-has-toggle {
+  padding-right: 44px;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--text-muted);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.password-toggle-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--error-color);
+  margin-top: 6px;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ==========================================================================
+   Clay Checkbox
+   ========================================================================== */
+.remember-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.custom-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--bg-clay-inset);
+  box-shadow: 
+    inset 2px 2px 5px rgba(160, 178, 204, 0.5),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.custom-checkbox:hover {
+  transform: scale(1.05);
+}
+
+.custom-checkbox:checked {
+  background: var(--clay-primary);
+  box-shadow: 
+    3px 4px 8px rgba(79, 70, 229, 0.35),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.custom-checkbox:focus-visible {
+  box-shadow: 
+    0 0 0 3px rgba(79, 70, 229, 0.3),
+    inset 2px 2px 5px rgba(160, 178, 204, 0.5);
+}
+
+/* ==========================================================================
+   Primary Clay Button (Puffy, Squishy 3D Pill)
+   ========================================================================== */
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 
+    8px 12px 24px rgba(67, 56, 202, 0.38),
+    -4px -4px 10px rgba(255, 255, 255, 0.7),
+    inset 2px 3px 6px rgba(255, 255, 255, 0.45),
+    inset -2px -3px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    10px 16px 28px rgba(67, 56, 202, 0.46),
+    -5px -5px 12px rgba(255, 255, 255, 0.8),
+    inset 2px 3px 6px rgba(255, 255, 255, 0.55),
+    inset -2px -3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(2px) scale(0.985);
+  box-shadow: 
+    2px 3px 8px rgba(67, 56, 202, 0.3),
+    inset 3px 3px 6px rgba(0, 0, 0, 0.35),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Quick Demo Fill Pill
+   ========================================================================== */
+.demo-helper {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px dashed rgba(160, 178, 204, 0.35);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.demo-helper span {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.btn-demo-fill {
+  font-size: 12px;
+  color: var(--clay-primary);
+  background-color: var(--bg-clay-inset);
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  box-shadow: 
+    3px 3px 7px rgba(160, 178, 204, 0.35),
+    -3px -3px 7px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.btn-demo-fill:hover {
+  color: var(--clay-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 
+    4px 5px 9px rgba(160, 178, 204, 0.42),
+    -3px -3px 7px rgba(255, 255, 255, 0.95);
+}
+
+.btn-demo-fill:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 5px rgba(160, 178, 204, 0.45),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   Footer Switcher
+   ========================================================================== */
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.auth-footer-link {
+  font-weight: 700;
+  color: var(--clay-primary);
+  margin-left: 8px;
+  background: var(--bg-clay);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  box-shadow: 
+    3px 3px 7px rgba(160, 178, 204, 0.35),
+    -3px -3px 7px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.auth-footer-link:hover {
+  color: var(--clay-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 
+    4px 5px 9px rgba(160, 178, 204, 0.45),
+    -3px -3px 7px rgba(255, 255, 255, 0.95);
+}
+
+.auth-footer-link:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 4px rgba(160, 178, 204, 0.45),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   Feedback Alert Banner
+   ========================================================================== */
+.feedback-banner {
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.25s ease;
+  border: none;
+}
+
+.feedback-banner.success {
+  background-color: var(--success-bg);
+  box-shadow: 
+    6px 6px 14px rgba(16, 185, 129, 0.25),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 4px rgba(5, 150, 105, 0.2);
+  color: #065f46;
+}
+
+.feedback-banner.info {
+  background-color: var(--bg-clay);
+  box-shadow: 
+    6px 6px 14px rgba(160, 178, 204, 0.35),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 4px rgba(160, 178, 204, 0.15);
+  color: #334155;
+}
+
+.feedback-banner.error {
+  background-color: var(--error-bg);
+  box-shadow: 
+    6px 6px 14px rgba(239, 68, 68, 0.25),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 4px rgba(220, 38, 38, 0.2);
+  color: #991b1b;
+}
+
+/* ==========================================================================
+   Signed In Success View
+   ========================================================================== */
+.signed-in-card {
+  text-align: center;
+  padding: 42px 28px;
+}
+
+.success-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #059669;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border: none;
+  box-shadow: 
+    6px 8px 18px rgba(16, 185, 129, 0.3),
+    -4px -4px 12px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.85),
+    inset -3px -3px 6px rgba(5, 150, 105, 0.25);
+}
+
+.btn-signout {
+  margin-top: 22px;
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dc2626;
+  background: #fee2e2;
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: 
+    5px 6px 14px rgba(239, 68, 68, 0.22),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 4px rgba(220, 38, 38, 0.2);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-signout:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    7px 8px 18px rgba(239, 68, 68, 0.28),
+    -4px -4px 10px rgba(255, 255, 255, 0.95);
+}
+
+.btn-signout:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 5px rgba(220, 38, 38, 0.3),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   Micro Footer Legal
+   ========================================================================== */
+.legal-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legal-footer a {
+  color: var(--clay-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-footer a:hover {
+  color: var(--clay-primary-hover);
+}
